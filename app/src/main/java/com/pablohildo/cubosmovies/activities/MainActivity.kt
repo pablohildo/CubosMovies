@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.pablohildo.cubosmovies.utils.ApiClient
 import com.pablohildo.cubosmovies.utils.EndlessRecyclerViewScrollListener
@@ -49,6 +51,8 @@ class MainActivity : AppCompatActivity(), Callback<MovieListModel> {
 
     override fun onResponse(call: Call<MovieListModel>, response: Response<MovieListModel>) {
         if(response.isSuccessful){
+            findViewById<ProgressBar>(R.id.progress_loading).visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
             totalResults.addAll(response.body()!!.results!!)
             recyclerView.adapter!!.notifyItemRangeInserted(recyclerAdapter.itemCount, totalResults.size)
         }
