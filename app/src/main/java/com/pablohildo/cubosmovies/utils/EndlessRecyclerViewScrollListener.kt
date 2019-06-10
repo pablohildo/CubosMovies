@@ -28,8 +28,6 @@ abstract class EndlessRecyclerViewScrollListener(layoutManager: GridLayoutManage
 
         if(!this.loading && (lastVisibleItemPosition+visibleTreshold) > totalItemCount){
             this.currentPage++
-            Log.d("ENDLESS", "Entrei aqui")
-            Log.d("ENDLESS", "Visible threshold: "+visibleTreshold)
             onLoadMore(currentPage, totalItemCount)
             loading = true
         }
